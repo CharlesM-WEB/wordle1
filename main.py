@@ -9,8 +9,8 @@ response = client.models.generate_content(
 )
  
 wordList = response.text.splitlines()
-word = random.choice(wordList)
- 
+word = "spout" #random.choice(wordList) 
+print(word)
 #variables
 GREEN = "\033[42m"
 RESET = "\033[49m"
@@ -35,11 +35,15 @@ for i in range(5):
 
     result = ""
     for i in range(5):
+        temp = word
         letter = guess[i]
         if word[i] == letter:
+            temp = temp[:i]+" " +temp[i+1:]
             result += GREEN + letter + RESET
-        elif letter in word:
+        elif letter in word and letter in temp:
             result += YELLOW + letter + RESET 
+            temp = temp[:temp.index(letter)] +" "+ temp[temp.index(letter)+ 1:]
         else: 
             result += letter 
     print(result)
+print(word)
